@@ -27,7 +27,31 @@ void UTTTBot::run() {
 void UTTTBot::move(int timeout) {
 	// Do something more intelligent here than return a random move
 	std::vector<Move> moves = getMoves(state);
-	std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl;
+	std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl; //random move
+
+	/*if you first player, give up center board
+	//for (inc = 0; inc <9; inc++){
+	if (firstplayer ==me){
+	if (moves <8){
+	std::cout << "place_disc " << *select_randomly(5) << std::endl; //center board first 8 moves
+	//}
+	}
+	else if (moves >=8 && moves <16){
+	//wherever opponent chooses to move
+	std::cout << "place_disc " << *select_randomly(moveboard) << std::endl; //other board next 8 moves
+	}
+	else {
+	//use random trial moves monte carlo
+	}
+	}
+	else {
+	//use random trial moves monte carlo
+	}
+	
+	*/
+
+
+
 }
 
 //update, leave this
