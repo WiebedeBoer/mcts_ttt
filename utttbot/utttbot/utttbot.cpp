@@ -42,10 +42,12 @@ void UTTTBot::move(int timeout) {
 	}
 	else {
 	//use random trial moves monte carlo
+	//MonteCarloTreeSearch()
 	}
 	}
 	else {
 	//use random trial moves monte carlo
+	//MonteCarloTreeSearch()
 	}
 	
 	*/
