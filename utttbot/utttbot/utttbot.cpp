@@ -40,6 +40,12 @@ void UTTTBot::move(int timeout) {
 	//wherever opponent chooses to move
 	std::cout << "place_disc " << *select_randomly(moveboard) << std::endl; //other board next 8 moves
 	}
+	else if (moves >=16 && moves <24){
+	//wherever opponent chooses to move opposite board
+	moveoppositeboard = 10 - moveboard;
+	std::cout << "place_disc " << *select_randomly(moveoppositeboard) << std::endl; 
+	//other opposite board next 8 moves till win
+	}
 	else {
 	//use random trial moves monte carlo
 	//MonteCarloTreeSearch()
