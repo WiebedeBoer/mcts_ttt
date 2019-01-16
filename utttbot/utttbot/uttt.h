@@ -50,7 +50,7 @@ Player getCurrentPlayer(const State &state);
 State doMove(const State &state, const Move &m);
 Player getWinner(const State &state);
 std::vector<Move> getMoves(const State &state);
-Move mcMove(const State &board, const Player &player);
+Move mcMove(const State &board, const Player &player); //mc move
 
 #endif // UTTT_H
 

@@ -38,13 +38,14 @@ void UTTTBot::move(int timeout) {
 		std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl; //random move
 	}
 	*/
+	Move move = Move{ -1,-1 };
 
 	std::vector<Move> moves = getMoves(state);
 	if (state.board[4][4] ==Player::None && state.macroboard[1][1] ==Player::Active) {
-		move = getMoves(state.board[4][4]);
+		move = Move{ 4,4 };
 	}
 	else {
-		Move move = Move{ -1,-1 };
+		
 		Player CurrentPlayer = getCurrentPlayer(state); //get current player
 
 		if (getMoves(state).size() != 1) {

@@ -163,9 +163,10 @@ enum class PlayerType { Human, Computer };
 State mcTrial(const State &board)
 {
 	State trialboard = State(board);
-	State::const_iterator boardIte;
+	//State::const_iterator boardIte;
 	std::vector<Move> moves;
 	std::vector<Move>::iterator move;
+	//std::array<int, 9> subscores = {0,0,0,0,0,0,0,0,0};
 
 	while (1) {
 		moves = getMoves(trialboard);
@@ -181,19 +182,24 @@ State mcTrial(const State &board)
 
 		trialboard = doMove(trialboard, *move);
 	}
+	return board;//bord return
 }
 
 //to implement update scores, scores board player
 void mcUpdateScores(std::array<int, 9> &scores, const State &board, const Player &player)
 {
-	State::const_iterator boardIte;
+	//State trialboard = State(board);
+	//State::const_iterator boardIte;
+	//const_iterator boardIte;
 	size_t count = 0; //counter
+	std::array<int, 9> boardIte = { 0,0,0,0,0,0,0,0,0 };
+	//std::array<int, 9> subscores = { 0,0,0,0,0,0,0,0,0 };
 
 	//if winner is player, score up player
 	if (getWinner(board) == player) {
-		for (boardIte = board.begin(); boardIte != board.end(); boardIte++) {
-			if (*boardIte == Player::None);
-			else if (*boardIte == player)
+		for (boardIte[] = board.macroboard.begin(); boardIte[] != board.macroboard.end(); boardIte++) {
+			if (boardIte[] == Player::None);
+			else if (boardIte[] == player)
 				scores[count] += mc_match;
 			else
 				scores[count] -= mc_other;
@@ -202,7 +208,7 @@ void mcUpdateScores(std::array<int, 9> &scores, const State &board, const Player
 	}
 	//else score up not player
 	else {
-		for (boardIte = board.begin(); boardIte != board.end(); boardIte++) {
+		for (boardIte = board.macroboard.begin(); boardIte != board.macroboard.end(); boardIte++) {
 			if (*boardIte == Player::None);
 			else if (*boardIte == player)
 				scores[count] -= mc_match;
@@ -218,16 +224,23 @@ Move getBestMove(const std::array<int, 9> &scores, const State &board)
 {
 	int highScore = -999; //at 1000 trials, minus one
 	Move highMove;
-	State::const_iterator boardIte;
+	//State::const_iterator boardIte;
+	std::array<int, 9> boardIte = { 0,0,0,0,0,0,0,0,0 };
+	//std::array<int, 9> subscores = { 0,0,0,0,0,0,0,0,0 };
+	//const_iterator boardIte;
 	std::array<int, 9>::const_iterator scoreIte = scores.begin();
 
 	//loop through moves
-	for (boardIte = board.begin(); boardIte != board.end(); boardIte++) {
-		if (*scoreIte > highScore && *boardIte == Player::None) {
-			highScore = *scoreIte;
-			highMove = boardIte - board.begin(); //at which iteration
+	//for (boardIte[] = board.macroboard.begin(); boardIte[] != board.macroboard.end(); boardIte++) {
+	for (int k =0; k <9; k++) {
+		for (boardIte[k] = board.macroboard.begin(); boardIte[k] != board.macroboard.end(); boardIte++) {
+			if (*scoreIte > highScore && *boardIte == Player::None) {
+				highScore = *scoreIte;
+				highMove = boardIte[k] - board.macroboard.begin(); //at which iteration
+			}
+			scoreIte++;
 		}
-		scoreIte++;
+
 	}
 
 	return highMove; //return the move with highest score
