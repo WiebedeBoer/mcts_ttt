@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <sstream>
+//#include "uttt.cpp"
 //#include <vector> vector?
 
 void UTTTBot::run() {
@@ -25,6 +26,7 @@ void UTTTBot::run() {
 
 //random move
 void UTTTBot::move(int timeout) {
+	/*
 	// Do something more intelligent here than return a random move
 	std::vector<Move> moves = getMoves(state);
 	//std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl; //random move
@@ -35,6 +37,30 @@ void UTTTBot::move(int timeout) {
 	else {
 		std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl; //random move
 	}
+	*/
+
+	std::vector<Move> moves = getMoves(state);
+	if (state.board[4][4] ==Player::None && state.macroboard[1][1] ==Player::Active) {
+		move = getMoves(state.board[4][4]);
+	}
+	else {
+		Move move = Move{ -1,-1 };
+		Player CurrentPlayer = getCurrentPlayer(state); //get current player
+
+		if (getMoves(state).size() != 1) {
+			move = mcMove(state, CurrentPlayer); //move = mcMove(state, CurrentPlayer);
+		}
+		else {
+			move = getMoves(state)[0];
+		}
+	}
+
+
+
+	//ActiveBoardScores.clear();
+	//TriedMoves.clear();
+
+	std::cout << "place_disc " << move << std::endl; //move
 
 	/*if you first player, give up center board
 	//for (inc = 0; inc <9; inc++){

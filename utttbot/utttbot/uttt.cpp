@@ -163,6 +163,7 @@ enum class PlayerType { Human, Computer };
 State mcTrial(const State &board)
 {
 	State trialboard = State(board);
+	State::const_iterator boardIte;
 	std::vector<Move> moves;
 	std::vector<Move>::iterator move;
 

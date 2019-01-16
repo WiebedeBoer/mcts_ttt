@@ -16,6 +16,7 @@ struct Move { int x, y; };
 struct State {
 	std::array<std::array<Player,9>,9> board;
 	std::array<std::array<Player,3>,3> macroboard;
+	//const_iterator boardIte;
 
 	State() {
 		for (int r=0; r<9; r++)
@@ -49,6 +50,7 @@ Player getCurrentPlayer(const State &state);
 State doMove(const State &state, const Move &m);
 Player getWinner(const State &state);
 std::vector<Move> getMoves(const State &state);
+Move mcMove(const State &board, const Player &player);
 
 #endif // UTTT_H
 
