@@ -197,24 +197,28 @@ void mcUpdateScores(std::array<int, 9> &scores, const State &board, const Player
 
 	//if winner is player, score up player
 	if (getWinner(board) == player) {
-		for (boardIte[] = board.macroboard.begin(); boardIte[] != board.macroboard.end(); boardIte++) {
-			if (boardIte[] == Player::None);
-			else if (boardIte[] == player)
-				scores[count] += mc_match;
-			else
-				scores[count] -= mc_other;
-			count++; //increment score
+		for (int k = 0; k < 9; k++) {
+			for (boardIte[k] = board.macroboard.begin(); boardIte[k] != board.macroboard.end(); boardIte++) {
+				if (boardIte[k] == Player::None);
+				else if (boardIte[k] == player)
+					scores[count] += mc_match;
+				else
+					scores[count] -= mc_other;
+				count++; //increment score
+			}
 		}
 	}
 	//else score up not player
 	else {
-		for (boardIte = board.macroboard.begin(); boardIte != board.macroboard.end(); boardIte++) {
-			if (*boardIte == Player::None);
-			else if (*boardIte == player)
-				scores[count] -= mc_match;
-			else
-				scores[count] += mc_other;
-			count++; //increment score
+		for (int k = 0; k < 9; k++) {
+			for (boardIte[k] = board.macroboard.begin(); boardIte[k] != board.macroboard.end(); boardIte++) {
+				if (boardIte == Player::None);
+				else if (boardIte[k] == player)
+					scores[count] -= mc_match;
+				else
+					scores[count] += mc_other;
+				count++; //increment score
+			}
 		}
 	}
 }
@@ -234,7 +238,7 @@ Move getBestMove(const std::array<int, 9> &scores, const State &board)
 	//for (boardIte[] = board.macroboard.begin(); boardIte[] != board.macroboard.end(); boardIte++) {
 	for (int k =0; k <9; k++) {
 		for (boardIte[k] = board.macroboard.begin(); boardIte[k] != board.macroboard.end(); boardIte++) {
-			if (*scoreIte > highScore && *boardIte == Player::None) {
+			if (*scoreIte > highScore && boardIte == Player::None) {
 				highScore = *scoreIte;
 				highMove = boardIte[k] - board.macroboard.begin(); //at which iteration
 			}
