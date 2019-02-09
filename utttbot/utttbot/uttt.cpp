@@ -155,9 +155,9 @@ std::vector<Move> getMoves(const State &state)
 }
 
 //trials
-unsigned const n_trials = 1000;
-unsigned const mc_match = 1;
-unsigned const mc_other = 1;
+unsigned const n_trials = 500;
+unsigned const mc_match = 1; //unsigned const mc_match = 1;
+unsigned const mc_other = 1; //unsigned const mc_other = 1;
 enum class PlayerType { Human, Computer };
 //to implement mctrial, board player
 State mcTrial(const State &board)
@@ -191,7 +191,7 @@ void mcUpdateScores(std::array < std::array<int, 9>, 9> &scores, const State &bo
 	//State trialboard = State(board);
 	//State::const_iterator boardIte;
 	//const_iterator boardIte;
-	size_t count = 0; //counter
+	size_t count = 0; //counter size_t count 0 , -999
 	std::array < std::array<Player, 9>, 9>::const_iterator boardIte;
 	
 	if (getWinner(board) == player) {
@@ -284,7 +284,7 @@ Move mcMove(const State &board, const Player &player)
 	std::array < std::array<int, 9>, 9> scoreboard;
 	for (int r = 0; r < 9; r++) {
 		for (int c = 0; c < 9; c++) {
-			scoreboard[r][c] = 0;
+			scoreboard[r][c] = -999; //scoreboard[r][c] = 0;
 		}
 	}
 
@@ -294,7 +294,7 @@ Move mcMove(const State &board, const Player &player)
 		State tryBoard = State(board);
 		doMove(tryBoard, moves[j]);
 
-		for (unsigned i = 0; i < n_trials / (PossibleMoveLength - 1); i++) {
+		for (unsigned i = 0; i < n_trials / (PossibleMoveLength); i++) {
 
 			const State trialboard = mcTrial(board);
 			mcUpdateScores(scoreboard, trialboard, player, moves[j]); //score updating
