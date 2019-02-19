@@ -38,6 +38,8 @@ void UTTTBot::move(int timeout) {
 		std::cout << "place_disc " << *select_randomly(moves.begin(), moves.end()) << std::endl; //random move
 	}
 	*/
+	int trialtime = timeout / 20; //calculate no. of trials
+
 	Move move = Move{ -1,-1 };
 
 	std::vector<Move> moves = getMoves(state);

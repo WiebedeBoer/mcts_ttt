@@ -156,6 +156,8 @@ std::vector<Move> getMoves(const State &state)
 
 //trials
 unsigned const n_trials = 500;
+//unsigned const n_trials = trialtime;
+//matches
 unsigned const mc_match = 1; //unsigned const mc_match = 1;
 unsigned const mc_other = 1; //unsigned const mc_other = 1;
 enum class PlayerType { Human, Computer };
@@ -284,7 +286,7 @@ Move mcMove(const State &board, const Player &player)
 	std::array < std::array<int, 9>, 9> scoreboard;
 	for (int r = 0; r < 9; r++) {
 		for (int c = 0; c < 9; c++) {
-			scoreboard[r][c] = -999; //scoreboard[r][c] = 0;
+			scoreboard[r][c] = -999; //scoreboard[r][c] = 0; -999
 		}
 	}
 
@@ -299,9 +301,7 @@ Move mcMove(const State &board, const Player &player)
 			const State trialboard = mcTrial(board);
 			mcUpdateScores(scoreboard, trialboard, player, moves[j]); //score updating
 		}
-	}
-
-	
+	}	
 
 	return getBestMove(scoreboard, board); //best move
 }
